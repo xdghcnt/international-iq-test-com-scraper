@@ -14,6 +14,8 @@
     <span class="result">{{ result.value }}</span>&nbsp;
     (<span class="count">{{ result.count }}</span>)
   </li>
+  <br/>
+  <i>Last record added {{lastRecordAddTime}}</i>
 </template>
 
 <script lang="ts">
@@ -32,6 +34,7 @@ export default defineComponent({
   },
 
   setup() {
+    const lastRecordAddTime = ref("never");
     const minCount = ref(0);
     const maxCount = ref(1);
     const thresholds: Ref<Partial<Record<keyof DataEntry, number>>> = ref({});
@@ -48,7 +51,7 @@ export default defineComponent({
     };
 
     watch(filterParam, (value) => {
-      handleSelectFilterParam(value, resultsByParam, minCount, maxCount, thresholds);
+      handleSelectFilterParam(value, resultsByParam, minCount, maxCount, thresholds, lastRecordAddTime);
     }, {immediate: true});
 
     return {
@@ -58,7 +61,8 @@ export default defineComponent({
       resultsByParamFiltered,
       getOpacity,
       filterParam,
-      filterValues: [{title: "Countries", value: "countryName"}, {title: "Names", value: "username"}]
+      filterValues: [{title: "Countries", value: "countryName"}, {title: "Names", value: "username"}],
+      lastRecordAddTime
     }
   }
 });

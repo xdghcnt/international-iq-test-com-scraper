@@ -11980,3 +11980,6 @@
 {"username":"Moonset","result":"109","datetime":1624280760,"countryName":"Китай","flagImg":"/img/flags/CN.jpg"}
 {"username":"JackFour","result":"104","datetime":1624281000,"countryName":"Германия","flagImg":"/img/flags/DE.jpg"}
 {"username":"Romir","result":"93","datetime":1624281060,"countryName":"Индия","flagImg":"/img/flags/IN.jpg"}
+{"username":"Alisha","result":"138","datetime":1624281600,"countryName":"Китай","flagImg":"/img/flags/CN.jpg"}
+{"username":"once","result":"102","datetime":1624281660,"countryName":"Япония","flagImg":"/img/flags/JP.jpg"}
+{"username":"陳彩晴","result":"91","datetime":1624281660,"countryName":"Тайвань","flagImg":"/img/flags/TW.jpg"}
