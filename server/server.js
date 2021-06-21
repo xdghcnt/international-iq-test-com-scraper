@@ -7,7 +7,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 console.log("URL", import.meta.url);
 
-app.get('/', (req, res) => {
+app.get('/studies/iq', (req, res) => {
     res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
 });
 
