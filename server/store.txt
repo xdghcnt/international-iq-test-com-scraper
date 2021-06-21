@@ -11972,3 +11972,4 @@
 {"username":"米饭","result":"122","datetime":1624278720,"countryName":"Китай","flagImg":"/img/flags/CN.jpg"}
 {"username":"Виктория","result":"100","datetime":1624279020,"countryName":"Беларусь","flagImg":"/img/flags/BY.jpg"}
 {"username":"huzaifa","result":"96","datetime":1624279080,"countryName":"Турция","flagImg":"/img/flags/TR.jpg"}
+{"username":"Ilya","result":"112","datetime":1624279320,"countryName":"Россия","flagImg":"/img/flags/RU.jpg"}

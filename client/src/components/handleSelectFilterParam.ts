@@ -19,7 +19,7 @@ export default (param: keyof DataEntry,
             return 0;
     };
     const entries: Record<string, { results: number[], average: number }> = {};
-    (JSON.parse(`[${data.split("\n").join(",")}]`) as DataEntry[]).forEach((item) => {
+    (JSON.parse(`[${data.split("\n").filter((line: string) => line).join(",")}]`) as DataEntry[]).forEach((item) => {
         entries[item[param]] = entries[item[param]] || { results: [] };
         entries[item[param]].results.push(parseInt(item.result));
     });

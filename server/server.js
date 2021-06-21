@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 
 const app = express()
-const port = 14898
+const port = 1488
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 console.log("URL", import.meta.url);
