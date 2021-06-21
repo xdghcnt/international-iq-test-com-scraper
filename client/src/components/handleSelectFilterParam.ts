@@ -8,7 +8,8 @@ export default (param: keyof DataEntry,
                 minCount: Ref<number>,
                 maxCount: Ref<number>,
                 thresholds: Ref<Partial<Record<keyof DataEntry, number>>>,
-                lastRecordAddTime: Ref<string>) => {
+                lastRecordAddTime: Ref<string>,
+                totalRecords: Ref<number>) => {
     const average = (nums: number[]) => {
         return nums.reduce((a: number, b: number) => (a + b)) / nums.length;
     };
@@ -20,12 +21,14 @@ export default (param: keyof DataEntry,
         else
             return 0;
     };
-    const entries: Record<string, { results: number[], average: number }> = {};
-    let lastRecord: DataEntry;
-    (JSON.parse(`[${data.split("\n").filter((line: string) => line).join(",")}]`) as DataEntry[]).forEach((item) => {
-        entries[item[param]] = entries[item[param]] || { results: [] };
+    const entries: Record<string, { results: number[], average: number, flagImg?: string }> = {};
+    const dataEntries = (JSON.parse(`[${data.split("\n").filter((line: string) => line).join(",")}]`) as DataEntry[]);
+    dataEntries.forEach((item) => {
+        entries[item[param]] = entries[item[param]] || {
+            results: [],
+            flagImg: param === "countryName" ? item.flagImg : undefined
+        };
         entries[item[param]].results.push(parseInt(item.result));
-        lastRecord = item;
     });
     const results: DataEntryGroup[] = [];
     let max: number, min: number;
@@ -40,13 +43,16 @@ export default (param: keyof DataEntry,
         results.push({
             name: param,
             value: entries[param].average,
-            count: count
+            count: count,
+            flagImg: entries[param].flagImg
         });
     });
     results.sort(sort);
     resultsByParam.value = results;
     minCount.value = min!;
     maxCount.value = max!;
+    totalRecords.value = dataEntries.length;
+    const lastRecord: DataEntry = dataEntries[dataEntries.length - 1];
     lastRecordAddTime.value = moment(new Date(lastRecord!.datetime * 1000)).fromNow();
     if (thresholds.value[param] === undefined)
         thresholds.value[param] = Math.round((max! - min!) / 5);

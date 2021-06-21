@@ -9,5 +9,6 @@ export interface DataEntry {
 export interface DataEntryGroup {
     name: string,
     value: number,
-    count: number
+    count: number,
+    flagImg?: string
 }

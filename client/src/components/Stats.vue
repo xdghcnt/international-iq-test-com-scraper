@@ -10,12 +10,15 @@
   </div>
   <br/>
   <li v-for="result in resultsByParamFiltered" :key="result.name" :style="{opacity: getOpacity(result)}">
-    <span class="name">{{ result.name }}</span>&nbsp;
+    <span class="name">
+      <img alt="" v-if="filterParam === 'countryName'" :src="`https://international-iq-test.com${result.flagImg}`"/>
+      {{ result.name }}
+    </span>&nbsp;
     <span class="result">{{ result.value }}</span>&nbsp;
     (<span class="count">{{ result.count }}</span>)
   </li>
   <br/>
-  <i>Last record added {{lastRecordAddTime}}</i>
+  <i>Last record added {{ lastRecordAddTime }} ({{ totalRecords }} total)</i>
 </template>
 
 <script lang="ts">
@@ -37,6 +40,7 @@ export default defineComponent({
     const lastRecordAddTime = ref("never");
     const minCount = ref(0);
     const maxCount = ref(1);
+    const totalRecords = ref(0);
     const thresholds: Ref<Partial<Record<keyof DataEntry, number>>> = ref({});
     const filterParam: Ref<keyof DataEntry> = ref("countryName");
     const resultsByParam: Ref<DataEntryGroup[]> = ref([]);
@@ -51,8 +55,8 @@ export default defineComponent({
     };
 
     watch(filterParam, (value) => {
-      handleSelectFilterParam(value, resultsByParam, minCount, maxCount, thresholds, lastRecordAddTime);
-    }, {immediate: true});
+      handleSelectFilterParam(value, resultsByParam, minCount, maxCount, thresholds, lastRecordAddTime, totalRecords);
+    }, { immediate: true });
 
     return {
       minCount,
@@ -61,8 +65,9 @@ export default defineComponent({
       resultsByParamFiltered,
       getOpacity,
       filterParam,
-      filterValues: [{title: "Countries", value: "countryName"}, {title: "Names", value: "username"}],
-      lastRecordAddTime
+      filterValues: [{ title: "Countries", value: "countryName" }, { title: "Names", value: "username" }],
+      lastRecordAddTime,
+      totalRecords
     }
   }
 });
