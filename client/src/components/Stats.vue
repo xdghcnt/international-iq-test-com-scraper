@@ -97,5 +97,10 @@ span.result {
   vertical-align: sub;
   line-height: 31px;
 }
+
+.name img {
+  width: 19px;
+  vertical-align: middle;
+}
 </style>
 <style src="@vueform/toggle/themes/default.css"></style>
