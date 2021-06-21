@@ -11983,3 +11983,15 @@
 {"username":"Alisha","result":"138","datetime":1624281600,"countryName":"Китай","flagImg":"/img/flags/CN.jpg"}
 {"username":"once","result":"102","datetime":1624281660,"countryName":"Япония","flagImg":"/img/flags/JP.jpg"}
 {"username":"陳彩晴","result":"91","datetime":1624281660,"countryName":"Тайвань","flagImg":"/img/flags/TW.jpg"}
+{"username":"albe","result":"115","datetime":1624282020,"countryName":"Италия","flagImg":"/img/flags/IT.jpg"}
+{"username":"Leigh","result":"93","datetime":1624282020,"countryName":"Южная Африка","flagImg":"/img/flags/ZA.jpg"}
+{"username":"ㅡ","result":"91","datetime":1624282020,"countryName":"Тайвань","flagImg":"/img/flags/TW.jpg"}
+{"username":"王振宇","result":"125","datetime":1624282320,"countryName":"Китай","flagImg":"/img/flags/CN.jpg"}
+{"username":"樱花小姐姐","result":"90","datetime":1624282320,"countryName":"Китай","flagImg":"/img/flags/CN.jpg"}
+{"username":"korikosi","result":"100","datetime":1624282440,"countryName":"Греция","flagImg":"/img/flags/GR.jpg"}
+{"username":"wolfgang","result":"87","datetime":1624282560,"countryName":"Франция","flagImg":"/img/flags/FR.jpg"}
+{"username":"EllyMess","result":"96","datetime":1624282620,"countryName":"Литва","flagImg":"/img/flags/LT.jpg"}
+{"username":"moai","result":"120","datetime":1624282740,"countryName":"Япония","flagImg":"/img/flags/JP.jpg"}
+{"username":"yty","result":"130","datetime":1624282800,"countryName":"Китай","flagImg":"/img/flags/CN.jpg"}
+{"username":"Dominik","result":"78","datetime":1624282860,"countryName":"Норвегия","flagImg":"/img/flags/NO.jpg"}
+{"username":"东立","result":"136","datetime":1624282920,"countryName":"Китай","flagImg":"/img/flags/CN.jpg"}
