@@ -16,18 +16,16 @@
   </li>
 </template>
 
-<script>
+<script lang="ts">
 import Slider from "vue3-slider";
-import {computed, ref, watch} from 'vue';
+import { computed, defineComponent, ref, watch } from 'vue';
 import handleSelectFilterParam from "./handleSelectFilterParam";
-import RadioToggleButtons from "./RadioToggleButtons";
+import RadioToggleButtons from "./RadioToggleButtons.vue";
+import { Ref } from "@vue/reactivity";
+import { DataEntry, DataEntryGroup } from "@/components/interface";
 
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  },
-
+export default defineComponent({
+  name: 'Stats',
   components: {
     Slider,
     RadioToggleButtons
@@ -36,17 +34,17 @@ export default {
   setup() {
     const minCount = ref(0);
     const maxCount = ref(1);
-    const thresholds = ref({});
-    const filterParam = ref("countryName");
-    const resultsByParam = ref([]);
-    const resultsByParamFiltered = computed(() => {
+    const thresholds: Ref<Partial<Record<keyof DataEntry, number>>> = ref({});
+    const filterParam: Ref<keyof DataEntry> = ref("countryName");
+    const resultsByParam: Ref<DataEntryGroup[]> = ref([]);
+    const resultsByParamFiltered: Ref<DataEntryGroup[]> = computed(() => {
       return resultsByParam.value.filter((resultItem) => {
-        return resultItem.count >= thresholds.value[filterParam.value];
+        return resultItem.count >= thresholds.value[filterParam.value]!;
       })
     });
 
-    const getOpacity = (resultItem) => {
-      return resultItem.count / maxCount.value + 0.2;
+    const getOpacity = (resultItem: DataEntryGroup) => {
+      return resultItem.count / maxCount.value + 0.5;
     };
 
     watch(filterParam, (value) => {
@@ -63,8 +61,7 @@ export default {
       filterValues: [{title: "Countries", value: "countryName"}, {title: "Names", value: "username"}]
     }
   }
-
-}
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

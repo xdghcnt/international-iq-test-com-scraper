@@ -2,15 +2,17 @@
   "name": "teenslang-scraper",
   "version": "1.0.0",
   "main": "getLinks.js",
+  "type": "module",
   "dependencies": {
+    "express": "^4.17.1",
+    "moment": "2.29.1",
     "node-scrapy": "^0.4.0-beta.1",
-    "read-last-lines": "1.8.0",
     "puppeteer": "9.1.1",
-    "moment": "2.29.1"
+    "read-last-lines": "1.8.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "main": "node app.js"
   },
   "author": "",
   "license": "ISC",

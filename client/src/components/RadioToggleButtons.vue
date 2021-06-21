@@ -5,27 +5,29 @@
   </span>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "RadioToggleButtons",
   props: ['modelValue', 'items'],
   emits: ['update:modelValue'],
   methods: {
-    getId: function (value) {
+    getId: function (value: string) {
       return `RadioToggleButtons-${value}`;
     }
   },
   computed: {
     value: {
-      get() {
+      get(): string {
         return this.modelValue
       },
-      set(value) {
+      set(value: string) {
         this.$emit('update:modelValue', value)
       }
     }
   }
-}
+})
 </script>
 
 <style scoped>
