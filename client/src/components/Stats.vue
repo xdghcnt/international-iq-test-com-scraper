@@ -37,6 +37,7 @@ export default defineComponent({
   },
 
   setup() {
+    const statsData: Ref<DataEntry[]> = ref([]);
     const lastRecordAddTime = ref("never");
     const minCount = ref(0);
     const maxCount = ref(1);
@@ -49,13 +50,20 @@ export default defineComponent({
         return resultItem.count >= thresholds.value[filterParam.value]!;
       })
     });
+    const getStatsData = async () => {
+      statsData.value = await (await fetch("/studies/iq/data")).json() as DataEntry[];
+    };
 
     const getOpacity = (resultItem: DataEntryGroup) => {
       return resultItem.count / maxCount.value + 0.5;
     };
 
-    watch(filterParam, (value) => {
-      handleSelectFilterParam(value, resultsByParam, minCount, maxCount, thresholds, lastRecordAddTime, totalRecords);
+    getStatsData();
+    setInterval(getStatsData, 10000);
+
+    watch([filterParam, statsData], ([value]) => {
+      handleSelectFilterParam(statsData.value, value, resultsByParam,
+          minCount, maxCount, thresholds, lastRecordAddTime, totalRecords);
     }, { immediate: true });
 
     return {

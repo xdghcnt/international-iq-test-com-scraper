@@ -1,5 +1,5 @@
 {
-  "name": "teenslang-scraper",
+  "name": "international-iq-test-scraper",
   "version": "1.0.0",
   "main": "getLinks.js",
   "type": "module",

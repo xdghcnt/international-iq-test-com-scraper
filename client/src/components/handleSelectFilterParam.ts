@@ -1,15 +1,17 @@
-const data = require('!!raw-loader!../../../server/store.txt').default;
 import { Ref } from "@vue/reactivity";
 import { DataEntry, DataEntryGroup } from "@/components/interface";
 import moment from "moment";
 
-export default (param: keyof DataEntry,
+export default (data: DataEntry[],
+                param: keyof DataEntry,
                 resultsByParam: Ref<DataEntryGroup[]>,
                 minCount: Ref<number>,
                 maxCount: Ref<number>,
                 thresholds: Ref<Partial<Record<keyof DataEntry, number>>>,
                 lastRecordAddTime: Ref<string>,
                 totalRecords: Ref<number>) => {
+    if (data.length === 0)
+        return;
     const average = (nums: number[]) => {
         return nums.reduce((a: number, b: number) => (a + b)) / nums.length;
     };
@@ -22,8 +24,7 @@ export default (param: keyof DataEntry,
             return 0;
     };
     const entries: Record<string, { results: number[], average: number, flagImg?: string }> = {};
-    const dataEntries = (JSON.parse(`[${data.split("\n").filter((line: string) => line).join(",")}]`) as DataEntry[]);
-    dataEntries.forEach((item) => {
+    data.forEach((item) => {
         entries[item[param]] = entries[item[param]] || {
             results: [],
             flagImg: param === "countryName" ? item.flagImg : undefined
@@ -51,8 +52,8 @@ export default (param: keyof DataEntry,
     resultsByParam.value = results;
     minCount.value = min!;
     maxCount.value = max!;
-    totalRecords.value = dataEntries.length;
-    const lastRecord: DataEntry = dataEntries[dataEntries.length - 1];
+    totalRecords.value = data.length;
+    const lastRecord: DataEntry = data[data.length - 1];
     lastRecordAddTime.value = moment(new Date(lastRecord!.datetime * 1000)).fromNow();
     if (thresholds.value[param] === undefined)
         thresholds.value[param] = Math.round((max! - min!) / 5);
