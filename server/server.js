@@ -8,9 +8,14 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 let statsData = [];
 
-fs.readFile(path.join(__dirname, './store.txt'), (error, data) => {
-    statsData = JSON.parse(`[${data.toString().split("\n").filter((line) => line).join(",")}]`);
-});
+const updateData = () => {
+    fs.readFile(path.join(__dirname, './store.txt'), (error, data) => {
+        statsData = JSON.parse(`[${data.toString().split("\n").filter((line) => line).join(",")}]`);
+    });
+};
+
+updateData();
+setInterval(updateData, 60000);
 
 app.get('/studies/iq', (req, res) => {
     res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
