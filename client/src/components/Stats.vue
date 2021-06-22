@@ -59,7 +59,7 @@ export default defineComponent({
     };
 
     getStatsData();
-    setInterval(getStatsData, 10000);
+    setInterval(getStatsData, 60000);
 
     watch([filterParam, statsData], ([value]) => {
       handleSelectFilterParam(statsData.value, value, resultsByParam,

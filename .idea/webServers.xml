@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="38e6c687-b9f4-409a-9036-4b85026ed04d" name="meme-police.com">
+        <fileTransfer rootFolder="/root" accessType="SFTP" host="meme-police.com" port="22" sshConfigId="4b02494d-4f4f-484b-bd35-ea8a8561fb75" sshConfig="root@meme-police.com:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
